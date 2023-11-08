@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CrudTarefas.View.ListItemsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label
+                FontSize="32"
+                Text="Tsk"
+                TextColor="Black" />
+
+            <Label
+                Margin="0,24"
+                FontSize="22"
+                HorizontalOptions="StartAndExpand"
+                Text="Prioridades Salvas"
+                TextColor="Black" />
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                <Label
+                    Margin="0,24"
+                    FontSize="22"
+                    HorizontalOptions="StartAndExpand"
+                    Text="Itens salvos"
+                    TextColor="Black" />
+                <Button
+                    Command="{Binding GoAddItemPageCommand}"
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    HorizontalOptions="End"
+                    Text="+"
+                    VerticalOptions="Center"
+                    WidthRequest="40" />
+            </StackLayout>
+
+
+            <ScrollView VerticalScrollBarVisibility="Never">
+                <StackLayout>
+                    <CollectionView ItemsSource="{Binding ItemsList}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="20" Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Grid
+                                        Margin="0,0,0,20"
+                                        Padding="10"
+                                        xct:CornerRadiusEffect.CornerRadius="12"
+                                        BackgroundColor="{Binding ItemPriority.PriorityColor}"
+                                        RowDefinitions="*,20,20"
+                                        RowSpacing="10">
+                                        <Frame
+                                            Grid.Row="0"
+                                            Padding="5"
+                                            HorizontalOptions="Start">
+                                            <Label Text="{Binding ItemPriority.PriorityName}" />
+                                        </Frame>
+                                        <Label
+                                            Grid.Row="1"
+                                            Text="{Binding Name}"
+                                            TextColor="Black" />
+                                        <Label
+                                            Grid.Row="2"
+                                            Text="{Binding Description}"
+                                            TextColor="Black" />
+                                    </Grid>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
